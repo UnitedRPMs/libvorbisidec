@@ -1,11 +1,11 @@
 # https://salsa.debian.org/multimedia-team/libvorbisidec
 
-%global commit0 b464a214537e92cc5d1bc759ca5b16a0cbea863d  
+%global commit0 7603eec33c79b8049792edda26b0b5f8c6d67102  
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
 Name:          libvorbisidec
-Version:       1.2.0
+Version:       1.2.1
 Release:       1%{?dist}
 Summary:       A fixed-point version of the Ogg Vorbis decoder for platforms that can' do floating point math
 URL:           http://wiki.xiph.org/Tremor
@@ -61,5 +61,9 @@ rm -f %{buildroot}/%{_libdir}/*la
 %doc README
 
 %changelog
+
+* Mon Sep 14 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.1-1
+- Updated to 1.2.1
+
 * Thu Jul 16 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.0-1
 - Initial build
