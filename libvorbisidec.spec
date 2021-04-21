@@ -1,12 +1,16 @@
 # https://salsa.debian.org/multimedia-team/libvorbisidec
 
-%global commit0 7603eec33c79b8049792edda26b0b5f8c6d67102  
+%global commit0 d3152d0d43981086f01b1f625239cda6b3659ef9
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global gver .git%{shortcommit0}
 
+#%define _legacy_common_support 1
+#%global _lto_cflags %{nil}
+%global debug_package %{nil}
+
 Name:          libvorbisidec
 Version:       1.2.1
-Release:       1%{?dist}
+Release:       2%{?dist}
 Summary:       A fixed-point version of the Ogg Vorbis decoder for platforms that can' do floating point math
 URL:           http://wiki.xiph.org/Tremor
 
@@ -17,6 +21,7 @@ License:       GPLv2
 BuildRequires: glibc-devel 
 BuildRequires: libtool
 BuildRequires: libogg-devel
+BuildRequires: gcc-c++
 
 %description
 The Tremor Vorbis I stream and file decoder provides an embeddable,
@@ -40,7 +45,7 @@ This package contains static libraries and header files need for development.
 
 %build
 ./autogen.sh
-%configure 
+./configure --prefix=/usr --libdir=%{_libdir}
 %make_build
 
 %install
@@ -61,6 +66,9 @@ rm -f %{buildroot}/%{_libdir}/*la
 %doc README
 
 %changelog
+
+* Mon Apr 19 2021 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.1-2
+- Rebuilt
 
 * Mon Sep 14 2020 Unitedrpms Project <unitedrpms AT protonmail DOT com> 1.2.1-1
 - Updated to 1.2.1
